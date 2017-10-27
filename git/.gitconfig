@@ -39,9 +39,9 @@
     s = status --short --branch
     d = diff HEAD --
     cdiff = diff --staged
-    l = log --pretty=compact --date=short
-    ll = log --pretty=detailed
-    ld = log --pretty=compact --date=short --patch
+    l = log --pretty=compact --date=short --reverse
+    ll = log --pretty=detailed --reverse
+    ld = log --pretty=compact --date=short --patch --reverse
     gr = grep -I --break --heading
     a = add
     c = commit
