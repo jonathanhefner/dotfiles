@@ -100,6 +100,12 @@ set_terminal_title() {
   echo -ne "\e]2;$@\a\e]1;$@\a";
 }
 
+in_each_dir() {
+  find . -mindepth 1 -maxdepth 1 -type d -print0 | while IFS= read -r -d '' subdir; do
+    (cd "$subdir" && eval "$*");
+  done
+}
+
 
 
 ### Include secrets
