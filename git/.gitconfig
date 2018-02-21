@@ -109,7 +109,7 @@
     # git rewrite [SHA]
     #   interactive rebase starting at optional $SHA or otherwise at the
     #   first commit since the most recent tag of the current branch
-    rewrite = "! f(){ if [ $# -gt 0 ]; then git rebase -i \"$1\"~1 ; elif [ $(git thisbranch) = master ]; then git rebase -i $((git show-ref --tags --hash || git rootof master) | tail -n1); else git rebase -i $(git rev-list master..HEAD | tail -n1)~1; fi; }; f"
+    rewrite = "! f(){ if [ $# -gt 0 ]; then git rebase -i \"$1\"~1 ; elif [ $(git thisbranch) = master ]; then git rebase -i $( (git show-ref --tags --hash || git rootof master) | tail -n1 ); else git rebase -i $(git rev-list master..HEAD | tail -n1)~1; fi; }; f"
     rw = "! git rewrite"
 
     # git restoredates
