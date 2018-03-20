@@ -25,6 +25,11 @@ export PATH=~/bin:$PATH
 
 ### History
 
+# Disable history expansion because it can yield unexpected results,
+# in particular in interpolated command args.
+# Use reverse-search-history (Ctrl+r) instead.
+set +H
+
 # Don't put duplicate lines in the history.
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 
