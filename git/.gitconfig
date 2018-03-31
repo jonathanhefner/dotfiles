@@ -105,17 +105,18 @@
     rootof = rev-list --max-parents=0 -n1
     thisbranch = rev-parse --abbrev-ref HEAD
     isbranch = "! f(){ git show-ref --verify --quiet refs/heads/\"$1\"; }; f"
+    lastfrozen = "! f(){ (git show-ref --tags --hash || git rootof master) | tail -n1; }; f"
 
     # git rewrite [SHA]
     #   interactive rebase starting at optional $SHA or otherwise at the
     #   first commit since the most recent tag of the current branch
-    rewrite = "! f(){ if [ $# -gt 0 ]; then git rebase -i \"$1\"~1 ; elif [ $(git thisbranch) = master ]; then git rebase -i $( (git show-ref --tags --hash || git rootof master) | tail -n1 ); else git rebase -i $(git rev-list master..HEAD | tail -n1)~1; fi; }; f"
+    rewrite = "! f(){ if [ $# -gt 0 ]; then git rebase -i \"$1\"~1 ; elif [ $(git thisbranch) = master ]; then git rebase -i $(git lastfrozen); else git rebase -i $(git rev-list master..HEAD | tail -n1)~1; fi; }; f"
     rw = "! git rewrite"
 
     # git restoredates
     #   restores commit dates to their original value
     #   used after interactive rebase (or `git rewrite`)
-    restoredates = "! git filter-branch --force --env-filter 'GIT_COMMITTER_DATE=$GIT_AUTHOR_DATE; export GIT_COMMITTER_DATE'"
+    restoredates = "! git filter-branch --force --env-filter 'GIT_COMMITTER_DATE=$GIT_AUTHOR_DATE; export GIT_COMMITTER_DATE' $(git lastfrozen)..HEAD"
 
     # git setdate SHA DATE
     #   sets date for commit $SHA to $DATE
