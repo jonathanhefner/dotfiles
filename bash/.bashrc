@@ -1,26 +1,14 @@
-# Resources
-#   - http://ezprompt.net/
-#   - https://github.com/mrzool/bash-sensible
-
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
 
-
 # Prompt "\n[TIME(aqua)] PWD(blue)\n$ "
+# via http://ezprompt.net/
 export PS1="\n[\[\e[36m\]\t\[\e[m\]] \[\e[34m\]\w\[\e[m\]\n\\$ "
-
 
 
 # Path
 export PATH=~/bin:$PATH
-
-
-
-# Prevent file overwrite on stdout redirection
-# Use `>|` to force redirection to an existing file
-#set -o noclobber
-
 
 
 ### History
@@ -30,14 +18,11 @@ export PATH=~/bin:$PATH
 # Use reverse-search-history (Ctrl+r) instead.
 set +H
 
-# Don't put duplicate lines in the history.
-export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-
 # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
 # '&' is a special pattern which suppresses duplicate entries
 # '[ \t]*' is a pattern which suppresses any commands that begin with a space
 # '?' and '??' are patterns which suppress (trivial) one- and two-character commands
-export HISTIGNORE=$'&:[ \t]*:exit:clear:fg:bg:ls:pwd'
+export HISTIGNORE=$'&:[ \t]*:exit:clear:fg:bg'
 
 # Save multi-line commands as one command
 shopt -s cmdhist
@@ -46,12 +31,11 @@ shopt -s cmdhist
 shopt -s histappend
 
 # Enable incremental history search with up / down arrows
-# See http://codeinthehole.com/writing/the-most-important-command-line-tip-incremental-history-searching-with-inputrc/
+# via http://codeinthehole.com/writing/the-most-important-command-line-tip-incremental-history-searching-with-inputrc/
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 bind '"\e[C": forward-char'
 bind '"\e[D": backward-char'
-
 
 
 ### Auto-completion & globbing
@@ -62,19 +46,8 @@ bind "set completion-ignore-case on"
 # Turn on recursive globbing (enables ** to recurse all directories)
 shopt -s globstar 2> /dev/null
 
-## Prepend cd to directory names automatically
-#shopt -s autocd 2> /dev/null
-
-## Use case-insensitive filename globbing
-#shopt -s nocaseglob
-
-## Ignore small typos when changing directory
-## For example, cd /vr/lgo/apaache would find /var/log/apache
-#shopt -s cdspell 2> /dev/null
-
 ## Correct spelling errors during tab-completion
 #shopt -s dirspell 2> /dev/null
-
 
 
 ### Aliases
@@ -94,10 +67,6 @@ alias fgrep='fgrep --color=auto'
 alias df='df -h'
 alias du='du -h'
 
-# where, sort of
-alias whence='type -a'
-
-
 
 ### Functions
 
@@ -112,9 +81,8 @@ in_each_dir() {
 }
 
 
-
-### Include secrets
+### Secrets
 
 if [ -f ~/.bashrc_secrets ]; then
-    . ~/.bashrc_secrets
+  . ~/.bashrc_secrets
 fi
