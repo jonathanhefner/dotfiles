@@ -7,7 +7,6 @@
     insteadOf = "github:"
 
 [core]
-    editor = nano
     pager = ""
     excludesfile = ~/.gitignore_global
     eol = lf # force LF EOLs

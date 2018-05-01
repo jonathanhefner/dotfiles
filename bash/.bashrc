@@ -11,6 +11,14 @@ export PS1="\n[\[\e[36m\]\t\[\e[m\]] \[\e[34m\]\w\[\e[m\]\n\\$ "
 export PATH=~/bin:$PATH
 
 
+# Editor
+if command -v subl >/dev/null 2>&1 ; then
+  export EDITOR='subl -w'
+else
+  export EDITOR='nano'
+fi
+
+
 ### History
 
 # Disable history expansion because it can yield unexpected results,
