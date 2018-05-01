@@ -40,6 +40,9 @@ bind '"\e[D": backward-char'
 
 ### Auto-completion & globbing
 
+# Display matches for ambiguous patterns on first tab key press
+bind "set show-all-if-ambiguous on"
+
 # Perform file completion in a case insensitive fashion
 bind "set completion-ignore-case on"
 
