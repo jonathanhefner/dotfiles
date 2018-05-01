@@ -35,19 +35,16 @@
     extendRegexp = true # enable extended regex
 
 [alias]
-    conf = config --global --edit
     s = status --short --branch
     d = diff HEAD --
-    cdiff = diff --staged
+    delta = diff --staged
     l = log --pretty=compact --date=short --reverse
     ll = log --pretty=detailed --reverse
     ld = log --pretty=compact --date=short --patch --reverse
-    gr = grep -I --break --heading
     a = add
     c = commit
-    ac = commit --all
     cm = commit -m
-    acm = commit --all -m
+    acm = "! f(){ git add . ; git commit -m \"$1\"; }; f"
     co = checkout
     br = branch
 
