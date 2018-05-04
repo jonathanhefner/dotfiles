@@ -24,7 +24,10 @@
     date = iso
 
 [push]
-    default = upstream
+    default = current
+
+[pull]
+    ff = only
 
 [rebase]
     stat = true
