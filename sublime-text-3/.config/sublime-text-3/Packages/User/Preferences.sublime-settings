@@ -2,8 +2,10 @@
 	"caret_style": "blink",
 	"color_scheme": "Packages/Colorsublime - Themes/GitHub_Bold.tmTheme",
 	"default_line_ending": "unix",
+	"detect_indentation": false,
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": false,
+	"font_face": "Oxygen Mono",
 	"font_size": 12,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
@@ -24,5 +26,6 @@
 	"tab_size": 2,
 	"theme": "Default.sublime-theme",
 	"translate_tabs_to_spaces": true,
-	"trim_trailing_white_space_on_save": true
+	"trim_trailing_white_space_on_save": true,
+	"update_check": false
 }
