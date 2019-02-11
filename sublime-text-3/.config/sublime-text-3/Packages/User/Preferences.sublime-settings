@@ -1,4 +1,5 @@
 {
+	"auto_complete_selector": "source, comment, text.plain, meta.tag, punctuation.definition.tag.begin, css",
 	"caret_style": "blink",
 	"color_scheme": "Packages/Colorsublime - Themes/GitHub_Bold.tmTheme",
 	"default_line_ending": "unix",
