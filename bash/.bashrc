@@ -11,6 +11,13 @@ export PS1="\n[\[\e[36m\]\t\[\e[m\]] \[\e[34m\]\w\[\e[m\]\n\\$ "
 export PATH=~/bin:$PATH
 
 
+# XDG Base Directory paths for a (hopefully) cleaner home directory
+# see https://wiki.archlinux.org/index.php/XDG_Base_Directory
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+
+
 # Editor
 if command -v subl >/dev/null 2>&1 ; then
   export EDITOR='subl -w'
