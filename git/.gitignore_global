@@ -3,3 +3,6 @@
 
 # OSX crap
 .DS_Store
+
+# Linux file system crap
+.fuse_hidden*
