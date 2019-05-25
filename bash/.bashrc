@@ -67,6 +67,15 @@ shopt -s globstar 2> /dev/null
 ## Correct spelling errors during tab-completion
 #shopt -s dirspell 2> /dev/null
 
+# Enable contextual completion (credit: Ubuntu default .bashrc)
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
 
 ### Aliases
 # To override the alias instruction use a \ before the command,
