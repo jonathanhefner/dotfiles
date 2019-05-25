@@ -72,8 +72,8 @@ shopt -s globstar 2> /dev/null
 # To override the alias instruction use a \ before the command,
 # e.g. \ls will call the real ls not the alias
 
-alias ls='ls --almost-all --file-type --group-directories-first'
-alias ll='ls -o --human-readable --time-style="+%Y-%m-%d %H:%M:%S" --dereference'
+alias ls='ls --almost-all --group-directories-first --indicator-style=slash --dereference --color=auto --hyperlink=auto'
+alias ll='ls -o --human-readable --time-style="+%Y-%m-%d %H:%M:%S" --dereference --color=auto --hyperlink=auto'
 
 alias less='less -r'  # ignore raw control characters
 
