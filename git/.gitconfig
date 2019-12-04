@@ -90,9 +90,9 @@
     #   sets origin to $GITHUB_USERNAME's project, using HTTPS
     hubhttps = "! : ${GITHUB_USERNAME?'missing environment variable'} ; git remote rm origin 2>/dev/null ; git remote add origin https://github.com/${GITHUB_USERNAME}/$(basename $(pwd))"
 
-    # git restore FILENAME
-    #   restores the last known version of a deleted file
-    restore = "! f(){ git checkout $(git rev-list -n 1 HEAD -- \"$1\")^ -- \"$1\"; git unstage $1; }; f"
+    # git recover FILENAME
+    #   recovers the last known version of a deleted file
+    recover = "! f(){ git checkout $(git rev-list -n 1 HEAD -- \"$1\")^ -- \"$1\"; git unstage $1; }; f"
 
     # git obliterate FILENAME
     #   deletes $FILENAME and removes it entirely from git history
