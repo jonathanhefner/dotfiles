@@ -105,6 +105,11 @@
     thisbranch = rev-parse --abbrev-ref HEAD
     freezepoint = "! f(){ local thisbranch=$(git thisbranch); if [ $thisbranch = master ]; then local base=$(git rootof master); else local base=$(git merge-base master $thisbranch); fi; local tag=$(git tag --contains $base --sort=-committerdate | head -n1); git merge-base $thisbranch ${tag:-$base}; }; f"
 
+    # git reup
+    #   rebases master onto latest upstream/master, pushes master to
+    #   origin/master, and rebases current branch onto master
+    reup = "! f(){ local thisbranch=$(git thisbranch); git fetch upstream master && git rebase upstream/master master && git push origin master && if [ $thisbranch != master ]; then git rebase master $thisbranch; fi; }; f"
+
     # git rewrite [SHA]
     #   interactive rebase starting at optional $SHA or otherwise at the
     #   first commit since most recent tag containing branch history
