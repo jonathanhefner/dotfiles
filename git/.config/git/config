@@ -1,6 +1,5 @@
-[user]
-    # name = $GIT_COMMITTER_NAME or $GIT_AUTHOR_NAME
-    # email = $GIT_COMMITTER_EMAIL or $GIT_AUTHOR_EMAIL
+[include]
+    path = user
 
 [url "git://github.com"]
     insteadOf = "gh:"
