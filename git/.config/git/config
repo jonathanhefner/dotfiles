@@ -8,7 +8,6 @@
 
 [core]
     pager = ""
-    excludesfile = ~/.gitignore_global
     eol = lf # force LF EOLs
     autocrlf = input
 
