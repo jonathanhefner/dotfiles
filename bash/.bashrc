@@ -46,7 +46,7 @@ shopt -s cmdhist
 shopt -s histappend
 
 # Enable incremental history search with up / down arrows
-# via http://codeinthehole.com/writing/the-most-important-command-line-tip-incremental-history-searching-with-inputrc/
+# via https://codeinthehole.com/writing/the-most-important-command-line-tip-incremental-history-searching-with-inputrc/
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 bind '"\e[C": forward-char'
