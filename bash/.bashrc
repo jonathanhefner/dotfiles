@@ -26,6 +26,12 @@ else
 fi
 
 
+### Hotkeys
+
+# Ctrl+b => backspace up to forward slash (or whitespace)
+bind '\C-b:unix-filename-rubout'
+
+
 ### History
 
 # Disable history expansion because it can yield unexpected results,
