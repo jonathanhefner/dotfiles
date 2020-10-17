@@ -1,6 +1,9 @@
 # development notes
 /.notes
 
+# temporary files
+*~
+
 # OSX crap
 .DS_Store
 
