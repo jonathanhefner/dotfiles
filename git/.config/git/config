@@ -109,6 +109,11 @@
     #   rebases current branch onto $BASE
     reup = "! f(){ local basebranch=${1:-master}; local thisbranch=$(git thisbranch); git fetch upstream $basebranch && git rebase upstream/$basebranch $basebranch && git push origin $basebranch && if [ $thisbranch != $basebranch ]; then git rebase $basebranch $thisbranch; fi; }; f"
 
+    # git copr USER:BRANCH [LOCALBRANCH]
+    #   fetches $BRANCH from $USER's fork on GitHub and checks it out as
+    #   $LOCALBRANCH (default: $BRANCH)
+    copr = "! f(){ local user=${1%%:*}; local branch=${1#*:}; local localbranch=${2:-$branch}; git fetch git@github.com:${user}/$(basename $(pwd)).git ${branch}:${localbranch} && git co $localbranch; }; f"
+
     # git rewrite [SHA]
     #   interactive rebase starting at optional $SHA or otherwise at the
     #   first commit since most recent tag containing branch history
