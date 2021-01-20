@@ -17,6 +17,9 @@
     compact = format:%Cgreen%h%Creset %Cblue%cd%Creset %s %Cred<%an>%Creset
     detailed = format:%Cgreen%h%Creset %Cblue%cr (%cD)%Creset %Cred<%an>%Creset%n%s%n%n%b%n
 
+[init]
+    defaultBranch = master
+
 [log]
     abbrevCommit = true # show SHA prefix only
     date = iso
@@ -101,13 +104,14 @@
     sha = rev-list -n1
     rootof = rev-list --max-parents=0 -n1
     thisbranch = rev-parse --abbrev-ref HEAD
-    freezepoint = "! f(){ local thisbranch=$(git thisbranch); if [ $thisbranch = master ]; then local base=$(git rootof master); else local base=$(git merge-base master $thisbranch); fi; local tag=$(git tag --contains $base --sort=-committerdate | head -n1); git merge-base $thisbranch ${tag:-$base}; }; f"
+    masterbranch = "! f(){ if ! git symbolic-ref refs/remotes/origin/HEAD > /dev/null; then git remote set-head origin --auto > /dev/null; fi; local branchname=$(basename $(git symbolic-ref refs/remotes/origin/HEAD)); echo ${branchname:-master}; }; f"
+    freezepoint = "! f(){ local thisbranch=$(git thisbranch); local masterbranch=$(git masterbranch); if [ $thisbranch = $masterbranch ]; then local base=$(git rootof $thisbranch); else local base=$(git merge-base $masterbranch $thisbranch); fi; local tag=$(git tag --contains $base --sort=-committerdate | head -n1); git merge-base $thisbranch ${tag:-$base}; }; f"
 
     # git reup [BASE]
     #   fetches latest upstream/$BASE branch (default: master), rebases
     #   local $BASE onto it, pushes local $BASE to origin/$BASE, and
     #   rebases current branch onto $BASE
-    reup = "! f(){ local basebranch=${1:-master}; local thisbranch=$(git thisbranch); git fetch upstream $basebranch && git rebase upstream/$basebranch $basebranch && git push origin $basebranch && if [ $thisbranch != $basebranch ]; then git rebase $basebranch $thisbranch; fi; }; f"
+    reup = "! f(){ local basebranch=${1:-$(git masterbranch)}; local thisbranch=$(git thisbranch); git fetch upstream $basebranch && git rebase upstream/$basebranch $basebranch && git push origin $basebranch && if [ $thisbranch != $basebranch ]; then git rebase $basebranch $thisbranch; fi; }; f"
 
     # git copr USER:BRANCH [LOCALBRANCH]
     #   fetches $BRANCH from $USER's fork on GitHub and checks it out as
