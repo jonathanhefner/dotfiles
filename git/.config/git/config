@@ -103,8 +103,10 @@
     date = log -n1 --pretty=format:%cd --date=short
     sha = rev-list -n1
     rootof = rev-list --max-parents=0 -n1
+
     thisbranch = rev-parse --abbrev-ref HEAD
-    masterbranch = "! f(){ if ! git symbolic-ref refs/remotes/origin/HEAD > /dev/null; then git remote set-head origin --auto > /dev/null; fi; local branchname=$(basename $(git symbolic-ref refs/remotes/origin/HEAD)); echo ${branchname:-master}; }; f"
+    masterbranch = "! f(){ if git remote get-url origin > /dev/null 2>&1; then if ! git symbolic-ref refs/remotes/origin/HEAD > /dev/null 2>&1; then git remote set-head origin --auto > /dev/null; fi; local branchname=$(basename $(git symbolic-ref refs/remotes/origin/HEAD)); fi; echo ${branchname:-$(git config init.defaultBranch)}; }; f"
+
     freezepoint = "! f(){ local thisbranch=$(git thisbranch); local masterbranch=$(git masterbranch); if [ $thisbranch = $masterbranch ]; then local base=$(git rootof $thisbranch); else local base=$(git merge-base $masterbranch $thisbranch); fi; local tag=$(git tag --contains $base --sort=-committerdate | head -n1); git merge-base $thisbranch ${tag:-$base}; }; f"
 
     # git reup [BASE]
