@@ -120,6 +120,11 @@
     #   $LOCALBRANCH (default: $BRANCH)
     copr = "! f(){ local user=${1%%:*}; local branch=${1#*:}; local localbranch=${2:-$branch}; git fetch git@github.com:${user}/$(basename $(pwd)).git ${branch}:${localbranch} && git co $localbranch; }; f"
 
+    # git pupr USER:BRANCH [LOCALBRANCH]
+    #   pushes $LOCALBRANCH (default: $BRANCH) to $BRANCH of $USER's
+    #   fork on GitHub
+    pupr = "! f(){ local user=${1%%:*}; local branch=${1#*:}; local localbranch=${2:-$branch}; git push git@github.com:${user}/$(basename $(pwd)).git ${localbranch}:${branch}; }; f"
+
     # git rewrite [SHA]
     #   interactive rebase starting at optional $SHA or otherwise at the
     #   first commit since most recent tag containing branch history
