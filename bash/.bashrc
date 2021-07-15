@@ -109,7 +109,7 @@ set_terminal_title() {
 
 in_each_dir() {
   find . -mindepth 1 -maxdepth 1 -type d -print0 | while IFS= read -r -d '' subdir; do
-    (cd "$subdir" && eval "$*");
+    (cd "$subdir" && eval $(printf "%q " "$@"));
   done
 }
 
